@@ -17,6 +17,7 @@ resource "github_repository" "repos" {
 resource "tfe_workspace" "repos" {
   name         = "repos"
   organization = "Cantonite"
+  auto_apply   = true
 
   vcs_repo {
     identifier     = "Cantonite/${github_repository.repos.name}"
