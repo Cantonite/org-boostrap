@@ -6,6 +6,12 @@ resource "github_repository" "org_bootstrap" { # This repository!
 resource "tfe_workspace" "org_bootstrap" {
   name         = "org-bootstrap"
   organization = "Cantonite"
+
+  vcs_repo {
+    identifier     = "Cantonite/${github_repository.org_bootstrap.name}"
+    oauth_token_id = var.oauth_token_id
+    branch         = ""
+  }
 }
 
 resource "github_repository" "repos" {
@@ -22,5 +28,6 @@ resource "tfe_workspace" "repos" {
   vcs_repo {
     identifier     = "Cantonite/${github_repository.repos.name}"
     oauth_token_id = var.oauth_token_id
+    branch         = ""
   }
 }
